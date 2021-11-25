@@ -25,8 +25,10 @@ public class UserRepository {
         }
     }
 
-    public void save(User user) {
-        String sql = "INSERT INTO users (user_id, user_name, password) VALUES (:userId, :username, :password)";
+    public void saveOrUpdate(User user) {
+        String sql = "INSERT INTO users (user_id, user_name, password)" +
+                "  VALUES (:userId, :username, :password) " +
+                "  ON DUPLICATE KEY UPDATE user_id=:userId, user_name=:username, password=:password";
         jdbcTemplate.update(sql, of(
                 "userId", user.getUserId(),
                 "username", user.getUsername(),
