@@ -15,6 +15,12 @@ spring:
 
 
 application:
+  security:
+    oauth2:
+      issuerUrl: ${JWT_ISSUER_URI:http://localhost:8080}
+    excludeUrls:
+      - "/actuator/**"
+      - "/upload/file"
   minio:
     enable: true
     endpoint: http://127.0.0.1:9000

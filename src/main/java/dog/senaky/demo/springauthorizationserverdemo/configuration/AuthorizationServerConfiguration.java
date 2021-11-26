@@ -6,6 +6,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import dog.senaky.demo.springauthorizationserverdemo.configuration.jose.Jwks;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -20,12 +21,15 @@ import org.springframework.security.oauth2.server.authorization.OAuth2Authorizat
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 
+@RequiredArgsConstructor
 @Configuration
 class AuthorizationServerConfiguration {
+    private final ApplicationProperties properties;
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -75,4 +79,9 @@ class AuthorizationServerConfiguration {
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
 
+
+    @Bean
+    public ProviderSettings providerSettings() {
+        return ProviderSettings.builder().issuer(properties.getSecurity().getOauth2().getIssuerUrl()).build();
+    }
 }

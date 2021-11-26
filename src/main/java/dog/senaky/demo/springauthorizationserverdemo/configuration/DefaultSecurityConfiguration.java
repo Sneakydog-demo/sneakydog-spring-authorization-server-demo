@@ -14,9 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 
+
 @RequiredArgsConstructor
 @EnableWebSecurity
 class DefaultSecurityConfiguration {
+    private final ApplicationProperties properties;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -28,7 +30,7 @@ class DefaultSecurityConfiguration {
         return new WebSecurityCustomizer() {
             @Override
             public void customize(WebSecurity web) {
-                web.ignoring().antMatchers("/actuator/**", "/upload/file");
+                web.ignoring().antMatchers(properties.getSecurity().getExcludeUrls().toArray(new String[]{}));
             }
         };
     }
