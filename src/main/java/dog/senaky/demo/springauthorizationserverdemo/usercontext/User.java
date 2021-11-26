@@ -29,15 +29,6 @@ public class User implements RowMapper<User>, UserDetails {
     }
 
     @Override
-    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new User(
-                rs.getString("user_id"),
-                rs.getString("user_name"),
-                rs.getString("password")
-        );
-    }
-
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>();
     }
@@ -61,4 +52,15 @@ public class User implements RowMapper<User>, UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @Override
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return new User(
+                rs.getString("user_id"),
+                rs.getString("user_name"),
+                rs.getString("password")
+        );
+    }
+
+
 }
