@@ -28,7 +28,7 @@ class DefaultSecurityConfiguration {
         return new WebSecurityCustomizer() {
             @Override
             public void customize(WebSecurity web) {
-                web.ignoring().antMatchers("/actuator/**");
+                web.ignoring().antMatchers("/actuator/**", "/upload/file");
             }
         };
     }
