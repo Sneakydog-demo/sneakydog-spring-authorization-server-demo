@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 
 @RequiredArgsConstructor
 @Slf4j
@@ -15,6 +17,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.loadByUsername(username);
+        final User user = userRepository.loadByUsername(username);
+        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), new ArrayList<>());
     }
 }

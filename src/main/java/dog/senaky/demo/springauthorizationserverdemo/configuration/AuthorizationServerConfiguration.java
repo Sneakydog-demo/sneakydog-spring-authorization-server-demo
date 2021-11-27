@@ -67,6 +67,8 @@ class AuthorizationServerConfiguration {
         return new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
     }
 
+
+
     @Bean
     public OAuth2AuthorizationConsentService authorizationConsentService(JdbcTemplate jdbcTemplate, RegisteredClientRepository registeredClientRepository) {
         return new JdbcOAuth2AuthorizationConsentService(jdbcTemplate, registeredClientRepository);
