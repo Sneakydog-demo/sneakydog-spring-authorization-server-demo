@@ -10,9 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-
 
 
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ class DefaultSecurityConfiguration {
     }
 
     @Bean
-    WebSecurityCustomizer webSecurityCustomizer(){
+    WebSecurityCustomizer webSecurityCustomizer() {
         return new WebSecurityCustomizer() {
             @Override
             public void customize(WebSecurity web) {
@@ -38,9 +38,12 @@ class DefaultSecurityConfiguration {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorizeRequests ->
-                        authorizeRequests.anyRequest().authenticated()
-                ).formLogin(withDefaults());
+                        authorizeRequests.antMatchers("/login2", "/login", "/favicon.ico").permitAll()
+                                .anyRequest().authenticated()
+                ).formLogin(formlogin -> formlogin.loginPage("/login2"))
+                .csrf(csrfToken -> csrfToken.csrfTokenRepository(new CookieCsrfTokenRepository()));
         return http.build();
     }
+
 
 }

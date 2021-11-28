@@ -10,4 +10,9 @@ public class IndexController {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/favicon.ico")
+    public String faviconico(){
+        return "favicon.ico";
+    }
 }

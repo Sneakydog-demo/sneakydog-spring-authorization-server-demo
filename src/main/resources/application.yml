@@ -5,6 +5,8 @@ server:
         name: Sneakydog_AS_distinctid
 
 spring:
+  thymeleaf:
+    cache: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/test
@@ -19,8 +21,11 @@ application:
     oauth2:
       issuerUrl: ${JWT_ISSUER_URI:http://localhost:8080}
     excludeUrls:
+      - "/login"
+      - "/login.html"
       - "/actuator/**"
       - "/upload/file"
+      - "/favicon.ico"
   minio:
     enable: true
     endpoint: http://127.0.0.1:9000
