@@ -21,8 +21,6 @@ application:
     oauth2:
       issuerUrl: ${JWT_ISSUER_URI:http://localhost:8080}
     excludeUrls:
-      - "/login"
-      - "/login.html"
       - "/actuator/**"
       - "/upload/file"
       - "/favicon.ico"
