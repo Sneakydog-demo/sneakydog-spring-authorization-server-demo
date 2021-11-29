@@ -1,5 +1,5 @@
 insert into users (user_id, user_name, password)
-values ('1', 'user', '{bcrypt}$2a$10$A9s9a8vEioKjoUyJ5nDYS.BdBd.btA2bWUfi2/bcfsIohJ.St2nz.');
+values ('1', 'user@yeah.net', '{bcrypt}$2a$10$A9s9a8vEioKjoUyJ5nDYS.BdBd.btA2bWUfi2/bcfsIohJ.St2nz.');
 
 
 

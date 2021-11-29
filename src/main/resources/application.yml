@@ -2,9 +2,11 @@ server:
   servlet:
     session:
       cookie:
-        name: Sneakydog_AS_distinctid
+        name: Sneakydog_distinctid
 
 spring:
+  application:
+    name: sneakydog-spring-authorization-server-demo
   thymeleaf:
     cache: false
   datasource:
@@ -16,10 +18,11 @@ spring:
       max-lifetime: 31000
 
 
+
 application:
   security:
     oauth2:
-      issuerUrl: ${JWT_ISSUER_URI:http://localhost:8080}
+      issuerUrl: ${SNEAKYDOG_AUTHORIZATION_SERVER_URL:http://localhost:8080}
     excludeUrls:
       - "/actuator/**"
       - "/upload/file"
