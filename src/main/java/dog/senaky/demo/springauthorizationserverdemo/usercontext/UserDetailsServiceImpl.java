@@ -14,10 +14,8 @@ import java.util.ArrayList;
 @Slf4j
 @Component
 class UserDetailsServiceImpl implements UserDetailsService {
-    private final UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final User user = userRepository.loadByUsername(username);
-        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(username, "", new ArrayList<>());
     }
 }
