@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Slf4j
-@Component
+//@Component
 class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

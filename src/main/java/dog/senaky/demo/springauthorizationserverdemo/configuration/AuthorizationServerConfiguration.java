@@ -21,6 +21,7 @@ import org.springframework.security.oauth2.server.authorization.OAuth2Authorizat
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -59,8 +60,8 @@ class AuthorizationServerConfiguration {
     }
 
 
-//    @Bean
-//    public ProviderSettings providerSettings() {
-//        return ProviderSettings.builder().issuer(properties.getSecurity().getOauth2().getIssuerUrl()).build();
-//    }
+    @Bean
+    public ProviderSettings providerSettings() {
+        return ProviderSettings.builder().issuer("http://127.0.0.1:8080").build();
+    }
 }

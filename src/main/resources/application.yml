@@ -16,20 +16,3 @@ spring:
     password: 123456
     hikari:
       max-lifetime: 31000
-
-
-
-application:
-  security:
-    oauth2:
-      issuerUrl: ${SNEAKYDOG_AUTHORIZATION_SERVER_URL:http://localhost:8080}
-    excludeUrls:
-      - "/actuator/**"
-      - "/upload/file"
-      - "/favicon.ico"
-  minio:
-    enable: true
-    endpoint: http://127.0.0.1:9000
-    accessKeyId: minio
-    accessKeySecret: 1234567890
-    bucketName: "my.example.s3.bucket"
