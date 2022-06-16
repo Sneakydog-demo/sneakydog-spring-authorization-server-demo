@@ -21,14 +21,12 @@ import org.springframework.security.oauth2.server.authorization.OAuth2Authorizat
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.config.ProviderSettings;
 import org.springframework.security.web.SecurityFilterChain;
 
 
 @RequiredArgsConstructor
 @Configuration(proxyBeanMethods = false)
 class AuthorizationServerConfiguration {
-    private final ApplicationProperties properties;
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -61,8 +59,8 @@ class AuthorizationServerConfiguration {
     }
 
 
-    @Bean
-    public ProviderSettings providerSettings() {
-        return ProviderSettings.builder().issuer(properties.getSecurity().getOauth2().getIssuerUrl()).build();
-    }
+//    @Bean
+//    public ProviderSettings providerSettings() {
+//        return ProviderSettings.builder().issuer(properties.getSecurity().getOauth2().getIssuerUrl()).build();
+//    }
 }

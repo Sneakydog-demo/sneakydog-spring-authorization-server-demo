@@ -16,7 +16,6 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @RequiredArgsConstructor
 @EnableWebSecurity
 class DefaultSecurityConfiguration {
-    private final ApplicationProperties properties;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -28,7 +27,7 @@ class DefaultSecurityConfiguration {
         return new WebSecurityCustomizer() {
             @Override
             public void customize(WebSecurity web) {
-                web.ignoring().antMatchers(properties.getSecurity().getExcludeUrls().toArray(new String[]{}));
+//                web.ignoring().antMatchers(properties.getSecurity().getExcludeUrls().toArray(new String[]{}));
             }
         };
     }
